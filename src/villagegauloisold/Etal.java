@@ -1,42 +1,50 @@
-package villagegaulois;
+package villagegauloisold;
 
 import personnages.Gaulois;
+import produit.IProduit;
 
-public class Etal {
+public class Etal <P extends IProduit>implements IEtal{
 	private Gaulois vendeur;
-	private String produit;
+	private IProduit produit;
 	private int quantiteDebutMarche;
 	private int quantite;
 	private boolean etalOccupe = false;
 
+	@Override
 	public boolean isEtalOccupe() {
 		return etalOccupe;
 	}
 
+	@Override
 	public Gaulois getVendeur() {
 		return vendeur;
 	}
 
+	@Override
 	public int getQuantite() {
 		return quantite;
 	}
 
-	public String getProduit() {
+	@Override
+	public IProduit getProduit() {
 		return produit;
 	}
 
-	public void occuperEtal(Gaulois vendeur, String produit, int quantite) {
+	@Override
+	public void occuperEtal(Gaulois vendeur, IProduit produit, int quantite) {
 		this.vendeur = vendeur;
-		this.produit = produit;
+		this.produit = (P) produit;
 		this.quantite = quantite;
 		quantiteDebutMarche = quantite;
 		etalOccupe = true;
 	}
 
+	@Override
 	public boolean contientProduit(String produit) {
 		return this.produit.equals(produit);
 	}
 
+	@Override
 	public int acheterProduit(int quantiteAcheter) {
 		if (quantite == 0) {
 			quantiteAcheter = 0;
@@ -50,6 +58,7 @@ public class Etal {
 		return quantiteAcheter;
 	}
 
+	@Override
 	public void libererEtal() {
 		etalOccupe = false;
 	}
@@ -62,12 +71,13 @@ public class Etal {
 	 *         vendu [2] : quantité de produit à vendre au début du marché [4] :
 	 *         quantité de produit vendu
 	 */
+	@Override
 	public String[] etatEtal() {
 		String[] donneesVente = new String[5];
 		donneesVente[0] = String.valueOf(etalOccupe);
 		if (etalOccupe) {
 			donneesVente[1] = vendeur.getNom();
-			donneesVente[2] = produit;
+			donneesVente[2] = produit.toString();
 			donneesVente[3] = String.valueOf(quantiteDebutMarche);
 			donneesVente[4] = String.valueOf(quantiteDebutMarche - quantite);
 		}
