@@ -1,15 +1,33 @@
 package scenarioTest;
 
 import personnages.Gaulois;
-import villagegauloisold.Etal;
-import villagegauloisold.IEtal;
+import produit.Poisson;
+import produit.Produit;
+import produit.Produit.Unite;
+import village.IVillage;
+import produit.Sanglier;
+import villagegauloisold.DepenseMarchand;
+import villagegaulois.Etal;
+import villagegaulois.IEtal;
 
 public class Scenario {
 
 	public static void main(String[] args) {
 
 		// TODO Partie 4 : creer de la classe anonyme Village
+		IVillage village = new IVillage() {
+			
+			public <P extends Produit> boolean installerVendeur(Etal<P> etal,Gaulois vendeur, P[] produit, int prix) {
+				etal.installerVendeur(vendeur,produit,prix);
+				return false;
+			};
+			
+			public DepenseMarchand[] acheterProduit(String produit,int quantiteSouhaitee) {
+				
+			};
 
+			
+		};
 		// fin
 
 		Gaulois ordralfabetix = new Gaulois("Ordralfabétix", 9);
@@ -20,10 +38,10 @@ public class Scenario {
 		IEtal etalSanglierAsterix = new Etal<>();
 		IEtal etalPoisson = new Etal<>();
 
-		Sanglier sanglier1 = new Sanglier(2000, obelix);
-		Sanglier sanglier2 = new Sanglier(1500, obelix);
-		Sanglier sanglier3 = new Sanglier(1000, asterix);
-		Sanglier sanglier4 = new Sanglier(500, asterix);
+		Sanglier sanglier1 = new Sanglier("sanglier1", Unite.KILOGRAMME,2000, obelix);
+		Sanglier sanglier2 = new Sanglier("sanglier2", Unite.KILOGRAMME,1500, obelix);
+		Sanglier sanglier3 = new Sanglier("sanglier3", Unite.KILOGRAMME,1000, asterix);
+		Sanglier sanglier4 = new Sanglier("sanglier4", Unite.KILOGRAMME,500, asterix);
 
 		Sanglier[] sangliersObelix = { sanglier1, sanglier2 };
 		Sanglier[] sangliersAsterix = { sanglier3, sanglier4 };

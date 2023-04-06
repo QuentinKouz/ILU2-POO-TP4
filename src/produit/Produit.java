@@ -7,6 +7,7 @@ public abstract class Produit implements IProduit {
 		GRAMME, KILOGRAMME, LITRE, CENTILITRE, MILLILITRE,PIECE
 	}
 	protected Unite unite;
+	
 	public Produit(String nom, Unite unite) {
 		this.nom = nom;
 		this.unite = unite;
@@ -18,7 +19,13 @@ public abstract class Produit implements IProduit {
 	};
 	
 	@Override
-	public void descriptionProduit(IProduit produit) {
+	public String description() {
+		return nom;
+	}
+	
+	@Override
+	public int calculerPrix(int prix) {
+		return prix;
 	}
 	
 }

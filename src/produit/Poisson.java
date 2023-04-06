@@ -9,5 +9,8 @@ public class Poisson extends Produit{
 		super(nom,unite);
 		this.date = date;
 	}
+	public String description() {
+		return nom + " pêché " + date;
+	}
 
 }
